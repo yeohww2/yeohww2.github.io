@@ -300,6 +300,20 @@ section {
     .section-heading {
         font-size: 1.5rem; 
     }
+
+    .navbar {
+        padding: 0.5rem; /* Smaller padding */
+    }
+
+    .navbar ul {
+        flex-direction: column; /* Stack items vertically */
+        gap: 1rem; /* Reduce gap */
+    }
+
+    .navbar .nav-link {
+        font-size: 1rem; /* Smaller font size */
+        padding: 0.5rem; /* Reduce padding for each item */
+    }
     
     .personal-info p {
         font-size: 0.9rem; 
