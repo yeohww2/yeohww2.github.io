@@ -295,3 +295,14 @@ section {
         transform: translateY(0);
     }
 }
+
+@media (max-width: 768px) {
+    .navbar ul {
+        flex-direction: column; 
+    }
+
+    .about-content {
+        flex-direction: column; 
+        align-items: center; 
+    }
+}
