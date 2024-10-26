@@ -332,3 +332,52 @@ section {
 
 }
 
+@media (max-width: 768px) {
+    
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0.5rem 0; 
+    }
+
+    .navbar ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar ul li {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+    }
+
+    .navbar .nav-link {
+        display: block;
+        width: 100%;
+        padding: 8px 0;
+        font-size: 0.9rem; : #f0f8ff;
+    }
+
+    .about-content {
+        flex-direction: column;
+        padding: 0 10px;
+    }
+
+    .about-image img {
+        width: 100px;
+        height: auto;
+    }
+
+    .personal-info, .resume-download {
+        text-align: left;
+        margin: 10px auto;
+    }
+
+}
+
