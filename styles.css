@@ -297,12 +297,17 @@ section {
 }
 
 @media (max-width: 768px) {
-    .navbar ul {
-        flex-direction: column; 
+    .section-heading {
+        font-size: 1.5rem; 
     }
-
-    .about-content {
-        flex-direction: column; 
-        align-items: center; 
+    
+    .personal-info p {
+        font-size: 0.9rem; 
+    }
+    
+    .btn-download {
+        width: 100%; 
+        padding: 15px; 
     }
 }
+
