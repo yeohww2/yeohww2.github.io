@@ -380,11 +380,13 @@ section {
     }
 
     .btn-download {
-        max-width: 80%; /* Set a maximum width to prevent overflow */
-        margin: 20px auto; /* Center the button and add space around */
+        width: 80%; 
+        max-width: 300px; 
+        margin: 20px auto;
         display: block;
-        padding: 10px 0; /* Adjust padding if needed */
-        text-align: center; /* Center-align text */
+        padding: 10px 0; 
+        text-align: center;
+        box-sizing: border-box;
     }
 }
 
