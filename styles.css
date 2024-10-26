@@ -309,14 +309,6 @@ section {
         width: 100%; 
         padding: 15px; 
     }
-    .navbar ul {
-        flex-direction: column; 
-        width: 100%; 
-    }
 
-    .navbar {
-        background-color: #333;
-        padding: 1rem; 
-    }
 }
 
