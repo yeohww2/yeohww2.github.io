@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure Hunt Game</title>
+    <link rel="stylesheet" href="game3.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header -->
+    <div class="header">
+        <button id="close-button" onclick="returnToPortfolio()">X</button>
+        <h1>🎉 Virtual World Treasure Hunt 🎉</h1>
+        <p>Join the adventure! Help the user and robot collect treasures while avoiding traps. Who can collect all treasures with the least steps? Let's find out! 🎮</p>
+    </div>
+
+    <!-- Star Falling Animation -->
+    <div class="falling-stars">
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+    </div>
+
+    <!-- Intro & Game Rules -->
+    <div class="intro-rules">
+        <h2>📜 Game Rules</h2>
+        <ul>
+            <li>Click on a cell to move and collect treasures 💎</li>
+            <li>Avoid traps ⚠️ – they will stop you for one round!</li>
+            <li>You and the robot start at the same point, but can you collect all treasures first?</li>
+            <li>Have fun! The one who collects all the treasures with fewer steps wins!</li>
+        </ul>
+    </div>
+
+    <!-- Score Section -->
+    <div class="score-container">
+        <p id="result">Press "Start Game" to begin!</p>
+    </div>
+
+    <!-- Game Maps -->
+    <div class="game-container">
+        <div class="map" id="user-map">
+            <h3>User's Map</h3>
+            <div class="grid" id="user-grid"></div>
+        </div>
+        <div class="map" id="robot-map">
+            <h3>Robot's Map</h3>
+            <div class="grid" id="robot-grid"></div>
+        </div>
+    </div>
+
+    <!-- Start Button -->
+    <div class="controls">
+        <button id="start-game">Start Game</button>
+    </div>
+</div>
+
+<script src="game3.js"></script>
+</body>
+</html>
