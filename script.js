@@ -5,42 +5,42 @@ function toggleNavbar() {
     const toggleButton = document.querySelector('.nav-toggle-btn');
 
     if (navbarVisible) {
-        navbar.classList.add('hidden'); 
+        navbar.classList.add('hidden');
         toggleButton.innerHTML = '<span class="material-icons">menu</span>';
     } else {
-        navbar.classList.remove('hidden'); 
+        navbar.classList.remove('hidden');
         toggleButton.innerHTML = '<span class="material-icons">close</span>';
     }
 
-    navbarVisible = !navbarVisible; 
+    navbarVisible = !navbarVisible;
 }
 
 document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', function(e) {
         e.preventDefault(); // Prevent default anchor behavior
 
-        const targetId = this.getAttribute('href').substring(1); 
+        const targetId = this.getAttribute('href').substring(1);
         const targetElement = document.getElementById(targetId);
 
-        const offset = 120; 
-        const elementPosition = targetElement.getBoundingClientRect().top; 
+        const offset = 120;
+        const elementPosition = targetElement.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.scrollY - offset;
 
         window.scrollTo({
             top: offsetPosition,
-            behavior: 'smooth' 
+            behavior: 'smooth'
         });
     });
 });
 
 function openModal(gameId) {
     var modal = document.getElementById(gameId);
-    modal.style.display = "block";  
+    modal.style.display = "block";
 }
 
 function closeModal(gameId) {
     var modal = document.getElementById(gameId);
-    modal.style.display = "none";  
+    modal.style.display = "none";
 }
 
 window.onclick = function(event) {
