@@ -12,10 +12,16 @@ function createFallingStars() {
     for (let i = 0; i < numStars; i++) {
         const star = document.createElement('div');
         star.classList.add('star');
+
         // Set random positions for each star
-        star.style.animationDuration = `${Math.random() * 5 + 2}s`; // Random speed for each star
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.animationDelay = `${Math.random() * 2}s`; // Random delay for each star
+        const randomLeft = Math.random() * 100;  // Random position between 0% and 100%
+        const randomSpeed = Math.random() * 5 + 2; // Random speed for each star
+        const randomDelay = Math.random() * 2;  // Random delay for each star
+
+        star.style.animationDuration = `${randomSpeed}s`;
+        star.style.left = `${randomLeft}%`;
+        star.style.animationDelay = `${randomDelay}s`;
+
         starContainer.appendChild(star);
     }
 }
@@ -247,4 +253,5 @@ function checkGameStatus() {
         document.getElementById('result').textContent = 'Robot wins! 🤖';
     }
 }
+
 
