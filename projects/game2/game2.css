@@ -1,1 +1,176 @@
+/* General Reset */
+body, h1, h2, h3, p, label, input, button {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Body Style */
+body {
+    background-color: #f0fff4;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: #c7f2d3;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    color: #2a7f5f;
+    font-size: 2rem;
+}
+
+#close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background-color: #ff6f6f;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#close-button:hover {
+    background-color: #ff4c4c;
+}
+
+/* Main Content */
+main {
+    margin-top: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    background-color: #eaffdf;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#introduction {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#introduction h2 {
+    color: #2a7f5f;
+    margin-bottom: 10px;
+}
+
+#introduction p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Calculator Container */
+#calculator-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    padding: 10px;
+    border: 2px solid #a8d5b9;
+    border-radius: 5px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #2a7f5f;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #3ac17d;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #2a7f5f;
+}
+
+/* Result Container */
+#result-container {
+    display: none; /* Hidden initially */
+    background-color: #f2f2f2;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#result-container h3 {
+    color: #2a7f5f;
+    margin-bottom: 10px;
+}
+
+#bmi-result {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#bmi-advice {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: block;
+}
+
+/* Falling Leaf Animation */
+@keyframes fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg); /* Add rotation */
+    }
+}
+
+.leaf {
+    position: fixed;
+    top: -50px;
+    left: calc(10% * var(--i));
+    width: 30px;
+    height: 15px;
+    background-color: #76c893;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: fall 5s linear infinite;
+    animation-delay: calc(0.5s * var(--i));
+    z-index: -1;
+}
 
