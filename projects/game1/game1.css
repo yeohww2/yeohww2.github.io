@@ -1,0 +1,180 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px; 
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #fff8fc;
+    color: #333;
+}
+
+/* Cute Header */
+header {
+    background-color: #ffebf0; 
+    text-align: center;
+    padding: 10px; 
+    border-radius: 15px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; 
+}
+
+header h1 {
+    font-size: 2.0rem; 
+    color: #ff6fa1;
+    text-shadow: 2px 2px 5px rgba(255, 200, 240, 0.8); 
+    letter-spacing: 2px; 
+    margin: 0;
+}
+
+header::before {
+    content: "🌸✨"; 
+    font-size: 1.5rem; 
+}
+
+header::after {
+    content: "🌈⭐";
+    font-size: 1.5rem; 
+}
+
+/* Main Section */
+main {
+    margin: 20px;
+}
+
+.centered-bold {
+    display: block; 
+    text-align: center; 
+    font-weight: bold; 
+    margin: 10px 0; 
+}
+
+#introduction,
+#rules {
+    background-color: #fce4ec; 
+    padding: 15px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+}
+
+#introduction h2,
+#rules h2 {
+    color: #ff6fa1; 
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
+li {
+    text-align: left; 
+    padding: 5px;
+    color: #333;
+}
+
+/* Cute Buttons */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #ffb3c6; 
+    color: white;
+    border: none;
+    border-radius: 25px; 
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+button:hover {
+    background-color: #ff6fa1; 
+    transform: scale(1.1); 
+}
+
+button:disabled {
+    background-color: #e0e0e0; 
+    cursor: not-allowed;
+}
+
+/* Game Container */
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#game-area {
+    background-color: #ffe5ec; 
+    border: 2px solid #ff6fa1; 
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#river-track {
+    margin: 20px 0;
+    padding: 10px;
+    border: 2px dashed #ff6fa1;
+    border-radius: 10px;
+    background-color: #fff8fc; 
+    min-height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow-x: scroll;
+}
+
+.boat {
+    font-size: 1.5em;
+    margin: 0 5px;
+}
+
+/* Leaderboard */
+#leaderboard {
+    background-color: #fce4ec;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+#leaderboard h2 {
+    color: #ff6fa1;
+    margin-bottom: 10px;
+}
+
+#top-scores {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: left;
+}
+
+/* Animations for Cutest Style */
+@keyframes cute-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+button:hover {
+    animation: cute-bounce 0.6s ease-in-out;
+}
