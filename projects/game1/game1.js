@@ -1,5 +1,5 @@
 document.getElementById('close-game').addEventListener('click', () => {
-    window.location.href = 'https://yeohww2.github.io/';
+    window.location.href = 'https://yeohww2.github.io/#projects';
 });
 
 function createFallingElements() {
