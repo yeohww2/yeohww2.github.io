@@ -1,0 +1,380 @@
+/* General */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    color: #333;
+    background-color: #fff;
+    text-align: center;
+}
+
+/* Falling Hearts Animation */
+.falling-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.heart {
+    position: absolute;
+    font-size: 2rem;
+    animation: fall 3s ease-in infinite;
+    opacity: 0;
+    color: #6b7f99;
+}
+
+/* Keyframes for the falling animation */
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Randomize the position and animation timing */
+.heart:nth-child(1) {
+    left: 20%;
+    animation-duration: 4s;
+    animation-delay: 0s;
+}
+
+.heart:nth-child(2) {
+    left: 40%;
+    animation-duration: 5s;
+    animation-delay: 0.5s;
+}
+
+.heart:nth-child(3) {
+    left: 60%;
+    animation-duration: 3.5s;
+    animation-delay: 1s;
+}
+
+.heart:nth-child(4) {
+    left: 80%;
+    animation-duration: 6s;
+    animation-delay: 1.5s;
+}
+
+/* Background */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, #5e8f9e, #9eaecf, #d8d8d8);
+    background-size: 400% 400%;
+    animation: gradientAnimation 5s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Header */
+header {
+    padding: 20px 0;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: transform 0.5s ease;
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+header h1 {
+    font-size: 4vw;
+    margin: 0;
+    color: #fff;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    margin: 0 10px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.6vw;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #a4b1c7;
+}
+
+/* Navigation Toggle Button */
+.nav-toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #6b7f99;
+    padding: 10px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1100;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.nav-toggle-btn:hover {
+    background: #6b7f99;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.nav-toggle-btn span.material-icons {
+    font-size: 24px;
+}
+
+/* Main Content */
+main {
+    margin-top: 60px;
+}
+
+.section {
+    height: 100vh;
+    padding: 60px 10px 80px;
+    scroll-margin-top: 60px;
+    text-align: center;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 5%;
+    margin: 10px;
+    background: #fff;
+    color: #6b7f99;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    background: #6b7f99;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    color: #004b87;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Individual Content Blocks */
+.about-content {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #333;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    max-width: 800px;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Bounce Animation */
+@keyframes bounceBack {
+    0% {
+        transform: translateX(0);
+    }
+    30% {
+        transform: translateX(15px);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    70% {
+        transform: translateX(8px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* About Me Section */
+/* Hover Effect: Bounce the content */
+.about-content:hover {
+    animation: bounceBack 0.6s ease-in-out;
+}
+
+/* About List - Force Left Alignment */
+.about-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    text-align: left !important;
+}
+
+/* List Items - Left alignment with smaller font */
+.about-content li {
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    text-align: left;
+}
+
+/* Bold text in list items */
+.about-content li b {
+    color: #004b87;
+    margin-left: 5px;
+}
+
+/* Adjust icon size */
+.about-content li::before {
+    margin-right: 8px;
+    font-size: 1rem;
+}
+
+/* Add the bounce animation to the <p> tag */
+.about-content p {
+    display: inline-block;
+    animation: bounce 1s infinite;
+}
+
+/* Keyframes for bouncing effect */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Custom button style for About Me section */
+#about .btn {
+    background: #004b87;
+    color: #fff;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#about .btn:hover {
+    background: #6b7f99;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* Programming Languages Section */
+/* Style the languages list */
+.languages-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 35px;
+}
+
+.languages-list li {
+    font-size: 1.2rem;
+    color: #333;
+    text-align: center;
+    background-color: #a4b1c7;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.languages-list li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Subjects Section */
+/* Style the subjects list */
+.subjects-list ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Styling for list items (subjects) */
+.subjects-list li {
+    font-size: 1.2rem;
+    color: #333;
+    text-align: left;
+    background-color: #a4b1c7;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect on list items */
+.subjects-list li:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Contact Section */
+/* Style the contact links */
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Style for the contact buttons */
+.btn-contact {
+    background-color: #6b7f99;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-contact:hover {
+    background-color: #004b87;
+    transform: scale(1.05);
+}
