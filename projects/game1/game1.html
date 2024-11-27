@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boat Racing Game</title>
+    <link rel="stylesheet" href="game1.css">
+</head>
+<body>
+<header>
+    <h1>Boat Racing Game</h1>
+</header>
+<main>
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>The Boat Racing Game is a thrilling two-player race to navigate a river full of challenges. The first to reach the finish line wins! Avoid traps, catch currents, and roll your dice wisely to secure victory!</p>
+    </section>
+    <section id="rules">
+        <h2>Rules</h2>
+        <ul>
+            <li><strong class="centered-bold">Each player takes turns rolling the dice to move forward.</strong></li>
+            <li>Landing on:
+                <ul>
+                    <li><strong>Trap (T)</strong>: Move back 2 steps.</li>
+                    <li><strong>Current (C)</strong>: Move forward 2 extra steps.</li>
+                    <li><strong>Empty Space (-)</strong>: No effect.</li>
+                </ul>
+            </li>
+            <li><strong class="centered-bold">The first player to reach position 100 wins!</strong></li>
+        </ul>
+    </section>
+    <div id="game-container">
+        <div id="game-area">
+            <p id="instructions">Enter Player Names to Start:</p>
+            <input type="text" id="player1-name" placeholder="Player 1 Name">
+            <input type="text" id="player2-name" placeholder="Player 2 Name">
+            <button id="start-game">Start Game</button>
+            <div id="river-track"></div>
+        </div>
+        <div id="controls">
+            <p id="current-player"></p>
+            <button id="roll-dice" disabled>Roll Dice</button>
+            <p id="dice-result"></p>
+        </div>
+    </div>
+    <div id="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul id="top-scores"></ul>
+    </div>
+</main>
+<script src="game1.js"></script>
+</body>
+</html>
