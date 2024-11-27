@@ -1,3 +1,34 @@
+document.getElementById('close-game').addEventListener('click', () => {
+    window.location.href = 'https://yeohww2.github.io/';
+});
+
+function createFallingElements() {
+    const container = document.querySelector('.falling-cute-elements');
+    const elements = ['❤️', '✨', '🌸', '⭐', '🦋'];
+    const totalElements = 6;
+
+    for (let i = 0; i < totalElements; i++) {
+        const span = document.createElement('span');
+        span.classList.add('cute-element');
+        span.textContent = elements[Math.floor(Math.random() * elements.length)];
+
+        // Randomize position and animation duration
+        span.style.left = `${Math.random() * 100}vw`;
+        span.style.animationDelay = `${Math.random() * 5}s`;
+        span.style.animationDuration = `${Math.random() * 3 + 2}s`;
+
+        container.appendChild(span);
+
+        // Remove element after animation ends
+        setTimeout(() => {
+            span.remove();
+        }, 5000);
+    }
+}
+
+// Call the function when the page loads
+setInterval(createFallingElements, 1500);
+
 // Classes
 class Boat {
     constructor(location = 0, color = 'Y', number = 1) {
@@ -77,7 +108,7 @@ function updateLeaderboard() {
     leaderboardDiv.innerHTML = '';
 
     leaderboard
-        .sort((a, b) => a.turns - b.turns) 
+        .sort((a, b) => a.turns - b.turns) // Sort by least number of turns
         .slice(0, 5) // Limit to top 5 scores
         .forEach((entry, index) => {
             const li = document.createElement('li');
@@ -157,3 +188,4 @@ document.getElementById('roll-dice').addEventListener('click', rollDice);
 
 // Update leaderboard on page load
 updateLeaderboard();
+
