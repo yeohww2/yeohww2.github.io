@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    font-size: 14px; 
+    font-size: 14px;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -9,52 +9,101 @@ body {
     color: #333;
 }
 
+.falling-cute-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.cute-element {
+    position: absolute;
+    top: -50px;
+    font-size: 2rem;
+    opacity: 0.8;
+    animation: fall 5s linear infinite;
+}
+
+/* Falling animation */
+@keyframes fall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0.3;
+    }
+}
+
 /* Cute Header */
 header {
-    background-color: #ffebf0; 
+    background-color: #ffebf0;
     text-align: center;
-    padding: 10px; 
-    border-radius: 15px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px; 
+    gap: 10px;
 }
 
 header h1 {
-    font-size: 2.0rem; 
+    font-size: 2.0rem;
     color: #ff6fa1;
-    text-shadow: 2px 2px 5px rgba(255, 200, 240, 0.8); 
-    letter-spacing: 2px; 
+    text-shadow: 2px 2px 5px rgba(255, 200, 240, 0.8);
+    letter-spacing: 2px;
     margin: 0;
 }
 
 header::before {
-    content: "🌸✨"; 
-    font-size: 1.5rem; 
+    content: "🌸✨";
+    font-size: 1.5rem;
 }
 
 header::after {
     content: "🌈⭐";
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
 }
 
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    color: #ff6fa1;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.close-btn:hover {
+    color: #ff4081;
+    transform: scale(1.2);
+}
 /* Main Section */
 main {
     margin: 20px;
 }
 
 .centered-bold {
-    display: block; 
-    text-align: center; 
-    font-weight: bold; 
-    margin: 10px 0; 
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    margin: 10px 0;
 }
 
 #introduction,
 #rules {
-    background-color: #fce4ec; 
+    background-color: #fce4ec;
     padding: 15px;
     margin: 20px auto;
     border-radius: 10px;
@@ -65,18 +114,18 @@ main {
 
 #introduction h2,
 #rules h2 {
-    color: #ff6fa1; 
+    color: #ff6fa1;
     margin-bottom: 10px;
 }
 
 ul {
-    list-style-type: none; 
-    padding: 0; 
-    margin: 0; 
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
 li {
-    text-align: left; 
+    text-align: left;
     padding: 5px;
     color: #333;
 }
@@ -85,24 +134,24 @@ li {
 button {
     padding: 10px 20px;
     margin: 10px;
-    background-color: #ffb3c6; 
+    background-color: #ffb3c6;
     color: white;
     border: none;
-    border-radius: 25px; 
+    border-radius: 25px;
     font-weight: bold;
     font-size: 1rem;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, background-color 0.2s;
 }
 
 button:hover {
-    background-color: #ff6fa1; 
-    transform: scale(1.1); 
+    background-color: #ff6fa1;
+    transform: scale(1.1);
 }
 
 button:disabled {
-    background-color: #e0e0e0; 
+    background-color: #e0e0e0;
     cursor: not-allowed;
 }
 
@@ -115,8 +164,8 @@ button:disabled {
 }
 
 #game-area {
-    background-color: #ffe5ec; 
-    border: 2px solid #ff6fa1; 
+    background-color: #ffe5ec;
+    border: 2px solid #ff6fa1;
     padding: 20px;
     border-radius: 10px;
     width: 90%;
@@ -129,7 +178,7 @@ button:disabled {
     padding: 10px;
     border: 2px dashed #ff6fa1;
     border-radius: 10px;
-    background-color: #fff8fc; 
+    background-color: #fff8fc;
     min-height: 50px;
     display: flex;
     justify-content: space-around;
