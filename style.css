@@ -354,32 +354,6 @@ main {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Contact Section */
-/* Style the contact links */
-.contact-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-/* Style for the contact buttons */
-.btn-contact {
-    background-color: #6b7f99;
-    color: white;
-    padding: 12px 30px;
-    border-radius: 8px;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-contact:hover {
-    background-color: #004b87;
-    transform: scale(1.05);
-}
-
 /* Projects Section */
 #projects {
     min-height: 100vh;
@@ -420,4 +394,35 @@ main {
     background: #6b7f99;
     color: #fff;
     transform: scale(1.1);
+}
+
+/* Contact Section */
+/* Style the contact links */
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Style for the contact buttons */
+.btn-contact {
+    background-color: #6b7f99;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-contact:hover {
+    background-color: #004b87;
+    transform: scale(1.05);
 }
