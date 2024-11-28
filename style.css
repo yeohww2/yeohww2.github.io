@@ -299,17 +299,25 @@ main {
 
 /* Programming Languages Section */
 /* Style the languages list */
+.languages-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
 .languages-list ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 35px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    max-width: 800px; 
 }
 
 .languages-list li {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: #333;
     text-align: center;
     background-color: #a4b1c7;
