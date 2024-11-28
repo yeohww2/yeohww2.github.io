@@ -311,17 +311,17 @@ main {
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 20px;
-    max-width: 800px; 
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjusted min size */
+    gap: 10px; /* Reduced gap for smaller screens */
+    max-width: 100%; /* Ensures it fits within the screen */
 }
 
 .languages-list li {
-    font-size: 1rem;
+    font-size: 0.9rem; /* Slightly smaller font for better fit */
     color: #333;
     text-align: center;
     background-color: #a4b1c7;
-    padding: 10px;
+    padding: 8px; /* Reduced padding for compact design */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
