@@ -4,30 +4,44 @@ function returnToPortfolio() {
 }
 document.getElementById('close-button').addEventListener('click', returnToPortfolio);
 
-// Function to create falling stars
-function createFallingStars() {
-    const starContainer = document.querySelector('.falling-stars');
-    const numStars = 30; // Number of stars
 
-    for (let i = 0; i < numStars; i++) {
-        const star = document.createElement('div');
-        star.classList.add('star');
 
-        // Set random positions for each star
-        const randomLeft = Math.random() * 100;  // Random position between 0% and 100%
-        const randomSpeed = Math.random() * 5 + 2; // Random speed for each star
-        const randomDelay = Math.random() * 2;  // Random delay for each star
 
-        star.style.animationDuration = `${randomSpeed}s`;
-        star.style.left = `${randomLeft}%`;
-        star.style.animationDelay = `${randomDelay}s`;
+// Coin Falling Logic
+const coinContainer = document.getElementById("coin-container");
 
-        starContainer.appendChild(star);
-    }
+function createCoin() {
+    const coin = document.createElement("div");
+    coin.classList.add("coin");
+    coin.textContent = "💰"; // Coin symbol
+
+    // Randomize position and animation duration
+    const randomLeft = Math.random() * 100; // Random left position (0 to 100%)
+    const randomDuration = Math.random() * 1.5 + 1; // Random duration (1 to 2.5 seconds)
+
+    // Set styles
+    coin.style.left = `${randomLeft}%`; // Random horizontal position
+    coin.style.animationDuration = `${randomDuration}s`; // Speed of fall
+
+    // Append coin to container
+    coinContainer.appendChild(coin);
+
+    // Remove coin after animation ends
+    coin.addEventListener("animationend", () => {
+        coin.remove();
+    });
 }
 
-// Initialize the falling stars when the page loads
-window.onload = createFallingStars;
+// Generate Coins Continuously
+function startCoinFall() {
+    setInterval(createCoin, 200); // Create a new coin every 200ms
+}
+
+// Start Coin Falling on Page Load
+window.addEventListener("load", () => {
+    startCoinFall();
+});
+
 
 
 const gridSize = 5; // 5x5 grid
@@ -86,6 +100,8 @@ function generateGridState() {
 function generateGrids() {
     const userGrid = document.getElementById('user-grid');
     const robotGrid = document.getElementById('robot-grid');
+    userGrid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+    robotGrid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
 
     userGrid.innerHTML = '';
     robotGrid.innerHTML = '';
@@ -94,10 +110,10 @@ function generateGrids() {
         for (let j = 0; j < gridSize; j++) {
             const userCell = document.createElement('div');
             const robotCell = document.createElement('div');
-
             userCell.classList.add('cell');
             robotCell.classList.add('cell');
 
+            // Add content based on grid state
             if (gridState[i][j] === 'treasure') {
                 userCell.classList.add('treasure');
                 userCell.textContent = '💎';
@@ -183,7 +199,7 @@ document.getElementById('start-game').addEventListener('click', function () {
 
 // Modify the robot movement logic
 function moveRobot() {
-    if (gameEnded || robotTrapCooldown) return; // Prevent robot movement if it's on cooldown
+    if (gameEnded || robotTrapCooldown) return;
 
     const robotRow = Math.floor(robotPosition / gridSize);
     const robotCol = robotPosition % gridSize;
@@ -253,5 +269,6 @@ function checkGameStatus() {
         document.getElementById('result').textContent = 'Robot wins! 🤖';
     }
 }
+
 
 
