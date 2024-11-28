@@ -15,14 +15,8 @@
         <p>Join the adventure! Help the user and robot collect treasures while avoiding traps. Who can collect all treasures with the least steps? Let's find out! 🎮</p>
     </div>
 
-    <!-- Star Falling Animation -->
-    <div class="falling-stars">
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-        <div class="star"></div>
-    </div>
+    <!-- Coin Animation -->
+    <div id="coin-container"></div>
 
     <!-- Intro & Game Rules -->
     <div class="intro-rules">
@@ -31,6 +25,7 @@
             <li>Click on a cell to move and collect treasures 💎</li>
             <li>Avoid traps ⚠️ – they will stop you for one round!</li>
             <li>You and the robot start at the same point, but can you collect all treasures first?</li>
+            <li>You can only move left, right, up, or down from your current position.</li>
             <li>Have fun! The one who collects all the treasures with fewer steps wins!</li>
         </ul>
     </div>
@@ -46,6 +41,7 @@
             <h3>User's Map</h3>
             <div class="grid" id="user-grid"></div>
         </div>
+
         <div class="map" id="robot-map">
             <h3>Robot's Map</h3>
             <div class="grid" id="robot-grid"></div>
