@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Treasure Hunt Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8ff;
+      margin: 0;
+      padding: 20px 10px;
+      text-align: center;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    #coin-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 999;
+    }
+
+    .coin {
+      position: absolute;
+      font-size: 30px;
+      animation: fall linear;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .header {
+      background-color: #a8d0e6;
+      color: #2c3e50;
+      padding: 20px 15px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .header h1 {
+      font-size: clamp(24px, 4vw, 42px);
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      font-size: 1.05em;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .intro-rules {
+      margin: 20px auto;
+      padding: 15px;
+      background-color: #ffffff;
+      width: 70%;
+      max-width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .intro-rules h2 {
+      font-size: 1.1em;
+      color: #34495e;
+      margin-top: 0;
+    }
+
+    .intro-rules ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .intro-rules li {
+      margin: 6px 0;
+      color: #34495e;
+    }
+
+    .score-container {
+      margin-top: 20px;
+      font-size: 1.05em;
+      color: #2c3e50;
+      font-weight: bold;
+    }
+
+    .game-container {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 30px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .map {
+      text-align: center;
+    }
+
+    .map h3 {
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 52px);
+      gap: 5px;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .cell {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #3498db;
+      background: #ecf0f1;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      box-sizing: border-box;
+      user-select: none;
+      font-size: 1em;
+    }
+
+    .cell:hover {
+      transform: scale(1.06);
+    }
+
+    .cell.empty { background: #ecf0f1; }
+    .cell.start { background: #d6eaf8; }
+    .cell.treasure { background: #ffeb3b; }
+    .cell.trap { background: #b0b7bd; color: white; }
+    .cell.user { background: #1abc9c; color: white; font-weight: bold; }
+    .cell.robot { background: #16a085; color: white; font-weight: bold; }
+
+    .controls {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 10px 18px;
+      font-size: 1em;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.05em;
+      font-weight: bold;
+      color: #34495e;
+    }
+
+    #close-button {
+      position: fixed;
+      top: 10px;
+      right: 15px;
+      background-color: #6fb0ff;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    #close-button:hover {
+      background-color: #4940dd;
+    }
+
+    @media (max-width: 768px) {
+      .intro-rules { width: 85%; }
+      .grid {
+        grid-template-columns: repeat(5, 44px);
+        gap: 4px;
+      }
+      .cell {
+        width: 44px;
+        height: 44px;
+        font-size: 0.9em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .intro-rules { width: 90%; }
+      .grid {
+        grid-template-columns: repeat(5, 38px);
+        gap: 4px;
+      }
+      .cell {
+        width: 38px;
+        height: 38px;
+        font-size: 0.75em;
+      }
+      button {
+        padding: 8px 14px;
+        font-size: 0.85em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button id="close-button" onclick="returnToPortfolio()">X</button>
+
+  <div id="coin-container"></div>
+
+  <div class="container">
+    <div class="header">
+      <h1>🎉 Virtual World Treasure Hunt 🎉</h1>
+      <p>
+        Collect all diamonds, avoid traps, and try to finish first.
+        Trap only stops one turn.
+      </p>
+    </div>
+
+    <div class="intro-rules">
+      <h2>📜 Game Rules</h2>
+      <ul>
+        <li>Click only a nearby cell: up, down, left, or right</li>
+        <li>Collect all diamonds 💎</li>
+        <li>Trap ⚠️ only skips 1 turn</li>
+        <li>Game ends immediately when either side collects all diamonds</li>
+        <li>If both somehow finish together, fewer steps wins</li>
+      </ul>
+    </div>
+
+    <div class="score-container">
+      <p id="result">Press "Start Game" to begin!</p>
+    </div>
+
+    <div class="game-container">
+      <div class="map">
+        <h3>User's Map</h3>
+        <div class="grid" id="user-grid"></div>
+      </div>
+
+      <div class="map">
+        <h3>Robot's Map</h3>
+        <div class="grid" id="robot-grid"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="start-game">Start Game</button>
+      <button id="restart-game">Restart</button>
+    </div>
+  </div>
+
+  <script>
+    const GRID_SIZE = 5;
+    const TREASURE_COUNT = 5;
+    const TRAP_COUNT = 4;
+
+    let userGridData = [];
+    let robotGridData = [];
+
+    let userPosition = { row: 0, col: 0 };
+    let robotPosition = { row: 0, col: 0 };
+
+    let userSteps = 0;
+    let robotSteps = 0;
+
+    let userTreasures = 0;
+    let robotTreasures = 0;
+
+    let userSkipTurn = 0;
+    let robotSkipTurn = 0;
+
+    let gameStarted = false;
+    let gameOver = false;
+
+    const userGrid = document.getElementById("user-grid");
+    const robotGrid = document.getElementById("robot-grid");
+    const resultText = document.getElementById("result");
+    const startButton = document.getElementById("start-game");
+    const restartButton = document.getElementById("restart-game");
+    const coinContainer = document.getElementById("coin-container");
+
+    startButton.addEventListener("click", startGame);
+    restartButton.addEventListener("click", startGame);
+
+    function returnToPortfolio() {
+      window.history.back();
+    }
+
+    function startGame() {
+      gameStarted = true;
+      gameOver = false;
+
+      userSteps = 0;
+      robotSteps = 0;
+      userTreasures = 0;
+      robotTreasures = 0;
+      userSkipTurn = 0;
+      robotSkipTurn = 0;
+
+      userPosition = { row: 0, col: 0 };
+      robotPosition = { row: 0, col: 0 };
+
+      userGridData = createEmptyGrid();
+      robotGridData = createEmptyGrid();
+
+      placeItems(userGridData);
+      placeItems(robotGridData);
+
+      userGridData[0][0] = "start";
+      robotGridData[0][0] = "start";
+
+      renderAll();
+      updateResult("Game started! Your turn first.");
+      createCoinRain();
+    }
+
+    function createEmptyGrid() {
+      return Array.from({ length: GRID_SIZE }, () =>
+        Array.from({ length: GRID_SIZE }, () => "empty")
+      );
+    }
+
+    function placeItems(grid) {
+      let treasuresPlaced = 0;
+      let trapsPlaced = 0;
+
+      while (treasuresPlaced < TREASURE_COUNT) {
+        const r = randomInt(0, GRID_SIZE - 1);
+        const c = randomInt(0, GRID_SIZE - 1);
+        if ((r === 0 && c === 0) || grid[r][c] !== "empty") continue;
+        grid[r][c] = "treasure";
+        treasuresPlaced++;
+      }
+
+      while (trapsPlaced < TRAP_COUNT) {
+        const r = randomInt(0, GRID_SIZE - 1);
+        const c = randomInt(0, GRID_SIZE - 1);
+        if ((r === 0 && c === 0) || grid[r][c] !== "empty") continue;
+        grid[r][c] = "trap";
+        trapsPlaced++;
+      }
+    }
+
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function renderAll() {
+      renderGrid(userGrid, userGridData, userPosition, true);
+      renderGrid(robotGrid, robotGridData, robotPosition, false);
+    }
+
+    function renderGrid(container, gridData, currentPosition, isUserGrid) {
+      container.innerHTML = "";
+
+      for (let row = 0; row < GRID_SIZE; row++) {
+        for (let col = 0; col < GRID_SIZE; col++) {
+          const cell = document.createElement("div");
+          cell.classList.add("cell");
+
+          const cellValue = gridData[row][col];
+
+          if (currentPosition.row === row && currentPosition.col === col) {
+            cell.classList.add(isUserGrid ? "user" : "robot");
+            cell.textContent = isUserGrid ? "🧑" : "🤖";
+          } else {
+            cell.classList.add(cellValue);
+
+            if (cellValue === "treasure") {
+              cell.textContent = "💎";
+            } else if (cellValue === "trap") {
+              cell.textContent = "⚠️";
+            } else if (cellValue === "start") {
+              cell.textContent = "🏁";
+            } else {
+              cell.textContent = "";
+            }
+          }
+
+          if (isUserGrid) {
+            cell.addEventListener("click", () => handleUserMove(row, col));
+          }
+
+          container.appendChild(cell);
+        }
+      }
+    }
+
+    function handleUserMove(targetRow, targetCol) {
+      if (!gameStarted || gameOver) return;
+
+      if (userSkipTurn > 0) {
+        userSkipTurn--;
+        updateResult(getScoreText() + " | You skip 1 turn because of trap.");
+        setTimeout(robotTurn, 450);
+        return;
+      }
+
+      if (!isAdjacent(userPosition, { row: targetRow, col: targetCol })) {
+        updateResult("Invalid move. You can only move up, down, left, or right.");
+        return;
+      }
+
+      movePlayer("user", targetRow, targetCol);
+      renderAll();
+
+      if (checkGameEnd()) return;
+
+      setTimeout(robotTurn, 450);
+    }
+
+    function robotTurn() {
+      if (!gameStarted || gameOver) return;
+
+      if (robotSkipTurn > 0) {
+        robotSkipTurn--;
+        updateResult(getScoreText() + " | Robot skips 1 turn because of trap.");
+        return;
+      }
+
+      const nextMove = getBestRobotMove();
+      if (!nextMove) return;
+
+      movePlayer("robot", nextMove.row, nextMove.col);
+      renderAll();
+
+      if (checkGameEnd()) return;
+
+      updateResult(getScoreText());
+    }
+
+    function movePlayer(player, targetRow, targetCol) {
+      const isUser = player === "user";
+      const position = isUser ? userPosition : robotPosition;
+      const gridData = isUser ? userGridData : robotGridData;
+
+      position.row = targetRow;
+      position.col = targetCol;
+
+      const cellValue = gridData[targetRow][targetCol];
+
+      if (isUser) userSteps++;
+      else robotSteps++;
+
+      if (cellValue === "treasure") {
+        if (isUser) userTreasures++;
+        else robotTreasures++;
+        gridData[targetRow][targetCol] = "empty";
+      } else if (cellValue === "trap") {
+        if (isUser) userSkipTurn = 1;
+        else robotSkipTurn = 1;
+        gridData[targetRow][targetCol] = "empty";
+      }
+    }
+
+    function isAdjacent(from, to) {
+      const rowDiff = Math.abs(from.row - to.row);
+      const colDiff = Math.abs(from.col - to.col);
+      return rowDiff + colDiff === 1;
+    }
+
+    function getAdjacentCells(position) {
+      const dirs = [
+        { row: -1, col: 0 },
+        { row: 1, col: 0 },
+        { row: 0, col: -1 },
+        { row: 0, col: 1 }
+      ];
+
+      const result = [];
+
+      for (const d of dirs) {
+        const nr = position.row + d.row;
+        const nc = position.col + d.col;
+        if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE) {
+          result.push({ row: nr, col: nc });
+        }
+      }
+
+      return result;
+    }
+
+    function manhattan(a, b) {
+      return Math.abs(a.row - b.row) + Math.abs(a.col - b.col);
+    }
+
+    function getAllTreasures(grid) {
+      const treasures = [];
+      for (let r = 0; r < GRID_SIZE; r++) {
+        for (let c = 0; c < GRID_SIZE; c++) {
+          if (grid[r][c] === "treasure") {
+            treasures.push({ row: r, col: c });
+          }
+        }
+      }
+      return treasures;
+    }
+
+    function bfsShortestPath(start, target) {
+      const queue = [[start]];
+      const visited = new Set([`${start.row},${start.col}`]);
+
+      while (queue.length > 0) {
+        const path = queue.shift();
+        const current = path[path.length - 1];
+
+        if (current.row === target.row && current.col === target.col) {
+          return path;
+        }
+
+        for (const next of getAdjacentCells(current)) {
+          const key = `${next.row},${next.col}`;
+          if (!visited.has(key)) {
+            visited.add(key);
+            queue.push([...path, next]);
+          }
+        }
+      }
+
+      return null;
+    }
+
+    function chooseBestTreasureTarget(position, grid) {
+      const treasures = getAllTreasures(grid);
+      if (treasures.length === 0) return null;
+
+      let bestTarget = null;
+      let bestPath = null;
+      let bestCost = Infinity;
+
+      for (const treasure of treasures) {
+        const path = bfsShortestPath(position, treasure);
+        if (!path) continue;
+
+        let cost = path.length - 1;
+
+        for (let i = 1; i < path.length; i++) {
+          const p = path[i];
+          if (grid[p.row][p.col] === "trap") {
+            cost += 1;
+          }
+        }
+
+        if (cost < bestCost) {
+          bestCost = cost;
+          bestTarget = treasure;
+          bestPath = path;
+        } else if (cost === bestCost && path.length < (bestPath ? bestPath.length : Infinity)) {
+          bestCost = cost;
+          bestTarget = treasure;
+          bestPath = path;
+        }
+      }
+
+      return { target: bestTarget, path: bestPath, cost: bestCost };
+    }
+
+    function getBestRobotMove() {
+      const best = chooseBestTreasureTarget(robotPosition, robotGridData);
+
+      if (!best || !best.path || best.path.length < 2) {
+        return null;
+      }
+
+      return best.path[1];
+    }
+
+    function checkGameEnd() {
+      const userFinished = userTreasures === TREASURE_COUNT;
+      const robotFinished = robotTreasures === TREASURE_COUNT;
+
+      if (!userFinished && !robotFinished) return false;
+
+      gameOver = true;
+
+      let msg = `Game Over! You: ${userSteps} steps, ${userTreasures}/${TREASURE_COUNT} diamonds. Robot: ${robotSteps} steps, ${robotTreasures}/${TREASURE_COUNT} diamonds. `;
+
+      if (userFinished && !robotFinished) {
+        msg += "🎉 You win! You collected all diamonds first!";
+      } else if (robotFinished && !userFinished) {
+        msg += "🤖 Robot wins! It collected all diamonds first!";
+      } else {
+        if (userSteps < robotSteps) {
+          msg += "🎉 You win with fewer steps!";
+        } else if (robotSteps < userSteps) {
+          msg += "🤖 Robot wins with fewer steps!";
+        } else {
+          msg += "🤝 It's a tie!";
+        }
+      }
+
+      updateResult(msg);
+      return true;
+    }
+
+    function getScoreText() {
+      return `You: ${userSteps} steps, ${userTreasures}/${TREASURE_COUNT} diamonds | Robot: ${robotSteps} steps, ${robotTreasures}/${TREASURE_COUNT} diamonds`;
+    }
+
+    function updateResult(message) {
+      resultText.textContent = message;
+    }
+
+    function createCoinRain() {
+      coinContainer.innerHTML = "";
+
+      for (let i = 0; i < 10; i++) {
+        const coin = document.createElement("div");
+        coin.className = "coin";
+        coin.textContent = "🪙";
+        coin.style.left = Math.random() * 100 + "vw";
+        coin.style.animationDuration = 2 + Math.random() * 3 + "s";
+        coin.style.animationDelay = Math.random() * 1 + "s";
+        coinContainer.appendChild(coin);
+
+        setTimeout(() => coin.remove(), 5000);
+      }
+    }
+
+    renderGrid(userGrid, createEmptyGrid(), { row: 0, col: 0 }, true);
+    renderGrid(robotGrid, createEmptyGrid(), { row: 0, col: 0 }, false);
+  </script>
+</body>
+</html>
