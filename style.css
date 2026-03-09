@@ -297,40 +297,6 @@ main {
     transform: scale(1.1);
 }
 
-/* Programming Languages Section */
-/* Style the languages list */
-.languages-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.languages-list ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjusted min size */
-    gap: 10px; /* Reduced gap for smaller screens */
-    max-width: 100%; /* Ensures it fits within the screen */
-}
-
-.languages-list li {
-    font-size: 0.9rem; /* Slightly smaller font for better fit */
-    color: #333;
-    text-align: center;
-    background-color: #a4b1c7;
-    padding: 8px; /* Reduced padding for compact design */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.languages-list li:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
 
 /* Subjects Section */
 /* Style the subjects list */
